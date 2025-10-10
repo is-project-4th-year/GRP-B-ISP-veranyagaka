@@ -1,11 +1,69 @@
 {% extends "base.html" %}
 {% block content %}
 <h2>Login</h2>
+
 <form method="post">
-    {% csrf_token %}
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button type="submit">Login</button>
+  {% csrf_token %}
+  <input type="email" name="email" placeholder="Email" required>
+  <input type="password" name="password" placeholder="Password" required>
+  <button type="submit">Login</button>
 </form>
-<p>No account? <a href="{% url 'signup' %}">Sign up</a></p>
+
+<hr>
+<button id="google-login" class="google-btn">Login with Google</button>
+<button id="test" class="test">Test button</button>
+
+
+<!-- ✅ Use ES module syntax -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+  import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyC5_JGhGc86S9op8MAlAW1O7-SgDaJ8eZQ",
+    authDomain: "srcnn-1ae4b.firebaseapp.com",
+    projectId: "srcnn-1ae4b",
+    storageBucket: "srcnn-1ae4b.firebasestorage.app",
+    messagingSenderId: "148880112523",
+    appId: "1:148880112523:web:7289b1f0d3ae0a817b4d8e",
+    measurementId: "G-5Y6E6TRC0W"
+  };
+
+  // ✅ Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  document.getElementById("test").addEventListener("click", () => {
+    console.log("✅ Test clicked");
+  });
+
+  document.getElementById("google-login").addEventListener("click", async () => {
+    console.log("🟢 Google Login clicked");
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const token = await result.user.getIdToken();
+
+      const response = await fetch("/api/auth/login/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": "{{ csrf_token }}"
+        },
+        body: JSON.stringify({ token })
+      });
+
+      if (response.ok) {
+        console.log("✅ Login success, redirecting...");
+        window.location.href = "/dashboard/";
+      } else {
+        alert("Google login failed ❌");
+      }
+    } catch (error) {
+      console.error("🚨 Google login failed:", error);
+    }
+  });
+</script>
+
 {% endblock %}

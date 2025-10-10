@@ -22,9 +22,10 @@ from core import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.home, name="home"),
-    path("login/", views.login_view, name="login"),
     path("signup/", views.signup_view, name="signup"),
-    path("logout/", views.logout_view, name="logout"),
     path("", include("core.urls")),
+    # path("api/auth/login/", views.firebase_login, name="firebase_login"),
+
 ]
+
 

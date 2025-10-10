@@ -150,3 +150,10 @@
   </div>
 </body>
 </html>
+
+{% extends "base.html" %}
+{% block content %}
+  <h2>Welcome, {{ user.first_name|default:user.username }} 👋</h2>
+  <p>You are logged in via Google.</p>
+  <a href="{% url 'logout' %}">Logout</a>
+{% endblock %}

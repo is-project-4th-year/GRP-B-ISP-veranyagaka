@@ -1,11 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Welcome to the SRCNN System</h2>
-{% if request.session.user %}
-    <p>You are logged in.</p>
-    <a href="{% url 'logout' %}">Logout</a>
-{% else %}
-    <a href="{% url 'login' %}">Login</a> | 
-    <a href="{% url 'signup' %}">Sign Up</a>
-{% endif %}
+  <h2>Login</h2>
+  <button id="test-js">Click me</button>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log("✅ JavaScript now runs from block scripts!");
+    const btn = document.getElementById("test-js");
+    btn.addEventListener("click", () => {
+      alert("🎉 JS is working inside Django!");
+      btn.textContent = "It works!";
+    });
+  });
+</script>
 {% endblock %}
