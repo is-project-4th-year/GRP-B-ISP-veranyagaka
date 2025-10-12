@@ -39,3 +39,7 @@ This project implements an **SRCNN (Super-Resolution Convolutional Neural Networ
 ## Usage
 1. Super-resolving an image
 2. Testing / Evaluation
+
+## Hugging Face Space
+https://huggingface.co/spaces/veranyagaka/srcnn
+
