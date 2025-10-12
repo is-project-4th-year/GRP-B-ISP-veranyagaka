@@ -1,3 +1,6 @@
 system/my_env
 *.pyc
 *.sqlite3
+*.json
+*.jpeg
+*.zip
