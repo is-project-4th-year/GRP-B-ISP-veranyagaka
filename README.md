@@ -45,3 +45,12 @@ https://huggingface.co/spaces/veranyagaka/srcnn
 
 https://huggingface.co/spaces/veranyagaka/super-resolution
 
+## Evaluation Metrics
+The metrics used to assess performance:
+
+- **PSNR** (Peak Signal-to-Noise Ratio): Measures the reconstruction quality; higher is better.
+
+- **SSIM** (Structural Similarity Index): Evaluates perceived image quality based on luminance and structure.
+  
+## References
+
