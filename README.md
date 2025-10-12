@@ -43,3 +43,5 @@ This project implements an **SRCNN (Super-Resolution Convolutional Neural Networ
 ## Hugging Face Space
 https://huggingface.co/spaces/veranyagaka/srcnn
 
+https://huggingface.co/spaces/veranyagaka/super-resolution
+
